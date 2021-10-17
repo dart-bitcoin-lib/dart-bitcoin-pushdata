@@ -1,6 +1,6 @@
 name: dart_bitcoin_pushdata
 description: Package where you can encode and decode the value as Bitcoin OP_PUSHDATA integer.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/dart-bitcoin-lib/dart-bitcoin-pushdata
 repository: https://github.com/dart-bitcoin-lib/dart-bitcoin-pushdata
 
