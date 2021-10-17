@@ -50,7 +50,7 @@ int encode(ByteData buffer, int number, [int offset = 0]) {
 }
 
 /// Decode
-PushData? decode(ByteData buffer, offset) {
+PushData? decode(ByteData buffer, int offset) {
   int opcode = buffer.getUint8(offset);
   int number, size;
 
