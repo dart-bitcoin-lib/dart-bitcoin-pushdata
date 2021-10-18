@@ -23,7 +23,8 @@ int encodingLength(int i) {
 }
 
 /// Encode
-int encode(ByteData buffer, int number, [int offset = 0]) {
+int encode(Uint8List _buffer, int number, [int offset = 0]) {
+  ByteData buffer = _buffer.buffer.asByteData();
   int size = encodingLength(number);
 
   // ~6 bit
@@ -50,7 +51,8 @@ int encode(ByteData buffer, int number, [int offset = 0]) {
 }
 
 /// Decode
-PushData? decode(ByteData buffer, int offset) {
+PushData? decode(Uint8List _buffer, int offset) {
+  ByteData buffer = _buffer.buffer.asByteData();
   int opcode = buffer.getUint8(offset);
   int number, size;
 
