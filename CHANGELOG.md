@@ -1,3 +1,7 @@
+## 1.0.3
+
+- update ByteData convert to Uint8List
+
 ## 1.0.2
 
 - update add type force
