@@ -1,3 +1,7 @@
+## 1.0.4
+
+- update ByteData convert to Uint8List
+
 ## 1.0.3
 
 - update ByteData convert to Uint8List
