@@ -8,7 +8,7 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  dart_bitcoin_ops: ^1.0.0
+  dart_bitcoin_ops: ^1.0.2
 
 dev_dependencies:
   convert: ^3.0.1

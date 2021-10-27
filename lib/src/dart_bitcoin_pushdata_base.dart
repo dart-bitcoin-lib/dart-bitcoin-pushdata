@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:dart_bitcoin_ops/dart_bitcoin_ops.dart' as ops;
+import 'package:dart_bitcoin_ops/dart_bitcoin_ops.dart';
 
 /// PushData
 class PushData {
@@ -13,7 +13,7 @@ class PushData {
 
 /// Encoding Length
 int encodingLength(int i) {
-  return i < ops.OP_PUSHDATA1
+  return i < OPS['OP_PUSHDATA1']!
       ? 1
       : i <= 0xff
           ? 2
@@ -33,17 +33,17 @@ int encode(Uint8List _buffer, int number, [int offset = 0]) {
 
     // 8 bit
   } else if (size == 2) {
-    buffer.setUint8(offset, ops.OP_PUSHDATA1);
+    buffer.setUint8(offset, OPS['OP_PUSHDATA1']!);
     buffer.setUint8(offset + 1, number);
 
     // 16 bit
   } else if (size == 3) {
-    buffer.setUint8(offset, ops.OP_PUSHDATA2);
+    buffer.setUint8(offset, OPS['OP_PUSHDATA2']!);
     buffer.setUint16(offset + 1, number, Endian.little);
 
     // 32 bit
   } else {
-    buffer.setUint8(offset, ops.OP_PUSHDATA4);
+    buffer.setUint8(offset, OPS['OP_PUSHDATA4']!);
     buffer.setUint32(offset + 1, number, Endian.little);
   }
 
@@ -57,18 +57,18 @@ PushData? decode(Uint8List _buffer, int offset) {
   int number, size;
 
   // ~6 bit
-  if (opcode < ops.OP_PUSHDATA1) {
+  if (opcode < OPS['OP_PUSHDATA1']!) {
     number = opcode;
     size = 1;
 
     // 8 bit
-  } else if (opcode == ops.OP_PUSHDATA1) {
+  } else if (opcode == OPS['OP_PUSHDATA1']!) {
     if (offset + 2 > buffer.lengthInBytes) return null;
     number = buffer.getUint8(offset + 1);
     size = 2;
 
     // 16 bit
-  } else if (opcode == ops.OP_PUSHDATA2) {
+  } else if (opcode == OPS['OP_PUSHDATA2']!) {
     if (offset + 3 > buffer.lengthInBytes) return null;
     number = buffer.getUint16(offset + 1, Endian.little);
     size = 3;
@@ -76,7 +76,7 @@ PushData? decode(Uint8List _buffer, int offset) {
     // 32 bit
   } else {
     if (offset + 5 > buffer.lengthInBytes) return null;
-    if (opcode != ops.OP_PUSHDATA4) throw Exception('Unexpected opcode');
+    if (opcode != OPS['OP_PUSHDATA4']!) throw Exception('Unexpected opcode');
 
     number = buffer.getUint32(offset + 1, Endian.little);
     size = 5;
